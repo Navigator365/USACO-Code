@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-
 //USACO 2018 February Contest, Bronze Problem 1
 //Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=807
 public class Teleportation {
@@ -14,10 +13,10 @@ public class Teleportation {
         int x = Integer.parseInt(st.nextToken());
         int y = Integer.parseInt(st.nextToken());
 
-        int answer = Math.abs(a-b);
-        answer = Math.min(answer, Math.abs(a-x)+Math.abs(b-y));
-        answer = Math.min(answer, Math.abs(a-y)+Math.abs(b-x));
-        
+        int answer = Math.abs(a - b);
+        answer = Math.min(answer, Math.abs(a - x) + Math.abs(b - y));
+        answer = Math.min(answer, Math.abs(a - y) + Math.abs(b - x));
+
         pw.print(answer);
         r.close();
         pw.close();
