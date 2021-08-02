@@ -3,6 +3,7 @@ ID: battlef3
 LANG: JAVA
 TASK: ride
 */
+
 import java.io.*;
 import java.util.*;
 
