@@ -51,7 +51,7 @@ public class ConcertTickets {
 		}
 		io.close();
 	}
-	
+
 	static class Kattio extends PrintWriter {
 		private BufferedReader r;
 		private StringTokenizer st;
@@ -95,5 +95,4 @@ public class ConcertTickets {
 			return Long.parseLong(next());
 		}
 	}
-
 }
