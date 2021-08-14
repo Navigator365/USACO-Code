@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+//USACO 2018 December Contest, Bronze Problem 1
+//Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=855
 public class MixingMilk {
     public static void main(String[] args) throws IOException {
         BufferedReader r = new BufferedReader(new FileReader("mixmilk.in"));
