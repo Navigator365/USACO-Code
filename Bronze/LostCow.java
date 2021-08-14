@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+//USACO 2017 US Open Contest, Bronze Problem 1
+//Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=735
 public class LostCow {
     public static void main(String[] args) throws IOException {
         BufferedReader r = new BufferedReader(new FileReader("lostcow.in"));
