@@ -5,12 +5,13 @@ import java.util.*;
 //Link: https://cses.fi/problemset/task/1091/
 public class ConcertTickets {
 	public static void main(String[] args) throws IOException {
-		Kattio io = new Kattio();
+		Reader io = new Reader();
+		PrintWriter pw = new PrintWriter(System.out);
 
 		int ticketNum = io.nextInt();
 		int peopleNum = io.nextInt();
 		// No multiset in java so we'll have to use a TreeMap
-		TreeMap<Integer, Integer> ticketMultiset = new TreeMap<>();
+		NavigableMap<Integer, Integer> ticketMultiset = new TreeMap<>();
 		Map.Entry<Integer, Integer> val;
 
 		for (int i = 0; i < ticketNum; i++) {
@@ -35,7 +36,7 @@ public class ConcertTickets {
 			val = ticketMultiset.lowerEntry(customerMaxPrice + 1); 
 			// If there are no possible prices, we can exit and return -1
 			if (val != null) {
-				io.println(val.getKey());
+				pw.println(val.getKey());
 				/*
 				 * If there's more than one set with the key value, then replace
 				 * the current set with the next-lowest set with the same key 
@@ -46,53 +47,64 @@ public class ConcertTickets {
 				} else {
 					ticketMultiset.put(val.getKey(), val.getValue() - 1);
 				}
-			} else
-				io.println(-1);
+			} else {
+				pw.println(-1);
+			}
 		}
 		io.close();
+		pw.close();
 	}
 
-	static class Kattio extends PrintWriter {
-		private BufferedReader r;
-		private StringTokenizer st;
-
-		// standard input
-		public Kattio() {
-			this(System.in, System.out);
+	static class Reader
+	{
+		final private int BUFFER_SIZE = 1 << 16;
+		private DataInputStream din;
+		private byte[] buffer;
+		private int bufferPointer, bytesRead;
+ 
+		public Reader()
+		{
+			din = new DataInputStream(System.in);
+			buffer = new byte[BUFFER_SIZE];
+			bufferPointer = bytesRead = 0;
 		}
-
-		public Kattio(InputStream i, OutputStream o) {
-			super(o);
-			r = new BufferedReader(new InputStreamReader(i));
+		private void fillBuffer() throws IOException
+		{
+			bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);
+			if (bytesRead == -1)
+				buffer[0] = -1;
 		}
-
-		// USACO-style file input
-		public Kattio(String problemName) throws IOException {
-			super(new FileWriter(problemName + ".out"));
-			r = new BufferedReader(new FileReader(problemName + ".in"));
+ 
+		private byte read() throws IOException
+		{
+			if (bufferPointer == bytesRead)
+				fillBuffer();
+			return buffer[bufferPointer++];
 		}
-
-		// returns null if no more input
-		public String next() {
-			try {
-				while (st == null || !st.hasMoreTokens())
-					st = new StringTokenizer(r.readLine());
-				return st.nextToken();
-			} catch (Exception e) {
-			}
-			return null;
+ 
+		public void close() throws IOException
+		{
+			if (din == null)
+				return;
+			din.close();
 		}
-
-		public int nextInt() {
-			return Integer.parseInt(next());
-		}
-
-		public double nextDouble() {
-			return Double.parseDouble(next());
-		}
-
-		public long nextLong() {
-			return Long.parseLong(next());
+		public int nextInt() throws IOException
+		{
+			int ret = 0;
+			byte c = read();
+			while (c <= ' ')
+				c = read();
+			boolean neg = (c == '-');
+			if (neg)
+				c = read();
+			do
+			{
+				ret = ret * 10 + c - '0';
+			}  while ((c = read()) >= '0' && c <= '9');
+ 
+			if (neg)
+				return -ret;
+			return ret;
 		}
 	}
 }
