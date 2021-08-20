@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 //https://codeforces.com/contest/1560/problem/B
-public class whoIsOpposite {
+public class WhoIsOpposite {
     public static void main(String[] args) throws IOException {
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(System.out);
