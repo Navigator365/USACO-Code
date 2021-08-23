@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-//NOTE: This may not work! 
-//ADDITIONAL NOTE: THIS DOESN'T! 
 public class Dragons {
 
     public static class pair {
