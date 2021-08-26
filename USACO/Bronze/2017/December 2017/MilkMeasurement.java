@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+//USACO 2017 December Contest, Bronze Problem 3
+//Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=761
 public class MilkMeasurement {
     public static void main(String[] args) throws IOException {
         BufferedReader r = new BufferedReader(new FileReader("measurement.in"));

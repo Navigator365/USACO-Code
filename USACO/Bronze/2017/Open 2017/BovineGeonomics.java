@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+//USACO 2017 US Open Contest, Bronze Problem 2
+//Link: http://www.usaco.org/index.php?page=viewproblem2&cpid=736
 public class BovineGeonomics {
 	public static void main(String[] args) throws IOException {
 		Kattio io = new Kattio("cownomics");
