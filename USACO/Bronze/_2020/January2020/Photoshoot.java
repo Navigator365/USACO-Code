@@ -12,34 +12,42 @@ public class Photoshoot {
 		int N = io.nextInt();
 		int[] bessieList = new int[N];
 		int[] correctList = new int[N];
-		// Used to prevent repeated values in our permutation, which isn't right
-		List<Integer> isItThere = new ArrayList<>();
+		// Used to prevent repeated values in our permutation
+		boolean[] isItThere = new boolean[N];
 
 		for (int i = 1; i < N; i++) {
 			bessieList[i] = io.nextInt();
 		}
 
-		// Iterate through every possible starting cow, and see if we can
+		// Iterate through every possible starting cow and see if we can
 		// construct a permutation based on that.
 		for (int i = 1; i <= N; i++) {
 			correctList[0] = i;
-			isItThere = new ArrayList<>();
+			isItThere = new boolean[N];
 			for (int j = 1; j < N; j++) {
 				correctList[j] = bessieList[j] - correctList[j - 1];
 			}
 			boolean bad = false;
-			for (int k = 0; k < N; k++) {
-				// Our permutation isn't valid-there are unacceptable values
+			for (int k : correctList) {
+				// Our permutation isn't valid because there are unacceptable values
 				// So, we can stop searching. 
-				if (isItThere.contains(correctList[k]) || correctList[k] > N 
-					|| correctList[k] <= 0) {
+				if (k > N || k <= 0) {
 					bad = true;
 					break;
 				}
-				isItThere.add(correctList[k]);
+				else {
+					// Our permutation isn't valid because some elements repeat
+					if(isItThere[k - 1]) {
+						bad = true;
+						break;
+					}
+					else {
+						isItThere[k - 1] = true;
+					}
+				}
 			}
-			// We've found a valid permutation-since we started from 1, the 
-			// first one we find will be the lexicographically minimum one
+			// We've found a valid permutation since we started from 1, the 
+			// first one we find will be the lexicographically smallest one
 			if (!bad) {
 				for (int j = 0; j < N; j++) {
 					io.print(correctList[j]);
